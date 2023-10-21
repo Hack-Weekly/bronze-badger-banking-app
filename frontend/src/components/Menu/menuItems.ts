@@ -13,6 +13,16 @@ export const menu = [
                 title: "Transfer",
                 url: "/transfer",
             },
+            {
+                id: 3,
+                title: "Sign In",
+                url: "/login",
+            },
+            {
+                id: 4,
+                title: "Sign Up",
+                url: "/register",
+            },
         ]
     },
     {

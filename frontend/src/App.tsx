@@ -49,16 +49,16 @@ function App() {
           path: "/placeholder",
           element: <Transfer/>
         },
+        {
+          path:"/login",
+          element:<Login/>
+        },
+        {
+          path:"/register",
+          element:<SignUp/>
+        }
       ]
     },
-    {
-      path:"/login",
-      element:<Login/>
-    },
-    {
-      path:"/register",
-      element:<SignUp/>
-    }
   ]);
 
   return <RouterProvider router={router} />;
