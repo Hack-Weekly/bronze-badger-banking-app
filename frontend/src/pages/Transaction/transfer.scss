@@ -1,0 +1,76 @@
+.main {
+    text-align: center;
+  
+    .title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .transfer-form {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+  
+      .form-group {
+        margin-bottom: 20px;
+  
+        label {
+          display: block;
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+  
+        input,
+        textarea {
+          width: 100%;
+          padding: 10px;
+          font-size: 16px;
+          font-family: Arial, sans-serif;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+  
+        textarea {
+          height: 120px;
+        }
+  
+        .to-group {
+          label {
+            display: inline;
+            font-weight: bold;
+            margin-right: 10px;
+          }
+  
+          input::placeholder {
+            color: #999;
+          }
+        }
+      }
+  
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+  
+        button {
+          flex: 1;
+          padding: 10px;
+          font-size: 18px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+  
+        button:first-child {
+          background-color: #0272f1;
+          color: #fff;
+          margin-right: 10px;
+        }
+  
+        button:last-child {
+          background-color: #02b443;
+          color: #fff;
+        }
+      }
+    }
+  }
+  
