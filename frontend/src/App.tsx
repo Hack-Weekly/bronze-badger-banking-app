@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home.tsx";
 import Transfer from "./pages/Transaction/Transfer.tsx";
 import Login from "./pages/Login/Login.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
+import TransactionHistory from "./pages/TransactionHistory/TransactionHistory.tsx";
 
 import Menu from "./components/Menu/Menu.tsx";
 import Footer from "./components/Footer/Footer.tsx";
@@ -56,6 +57,10 @@ function App() {
         {
           path:"/register",
           element:<SignUp/>
+        },
+        {
+          path:"/transactionHistory",
+          element:<TransactionHistory/>
         }
       ]
     },

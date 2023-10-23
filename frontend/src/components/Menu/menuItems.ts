@@ -23,6 +23,11 @@ export const menu = [
                 title: "Sign Up",
                 url: "/register",
             },
+            {
+                id: 5,
+                title: "Transactions",
+                url: "/transactionHistory",
+            }
         ]
     },
     {

@@ -1,0 +1,44 @@
+.transaction-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+
+  &-header {
+    font-weight: bold;
+    background-color: #444;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px;
+  }
+
+  &-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 5px;
+    background-color: #555;
+    border-radius: 5px;
+  }
+
+  &-cell {
+    padding: 5px;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+  }
+
+  &-btn {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px 40px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font: inherit;
+    cursor: pointer;
+
+  }
+}

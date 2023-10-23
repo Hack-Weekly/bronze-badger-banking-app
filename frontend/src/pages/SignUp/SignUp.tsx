@@ -4,7 +4,11 @@ import { useRef, useState, useEffect } from "react";
 import "./signup.scss";
 
 const SignUp = () => {
-    const [formData, setFormData] = useState<{ username: string, password: string, confirmPassword: string }>({ username: "", password: "", confirmPassword: "" });
+    const [formData, setFormData] = useState<{ username: string; password: string; confirmPassword: string }>({
+        username: "",
+        password: "",
+        confirmPassword: "",
+    });
     const [errMsg, setErrMsg] = useState<string>("");
 
     const errRef = useRef<HTMLParagraphElement>(null);
@@ -61,7 +65,14 @@ const SignUp = () => {
                 </p>
                 <h1>Sign Up</h1>
                 <label htmlFor="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Username" required onChange={handleInputChange} />
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                    required
+                    onChange={handleInputChange}
+                />
                 <label htmlFor="password">Password</label>
                 <input
                     type="password"
@@ -72,7 +83,7 @@ const SignUp = () => {
                     required
                     onChange={handleInputChange}
                 />
-                {(!isPasswordValid(formData.password) && !(formData.password === "")) && (
+                {!isPasswordValid(formData.password) && !(formData.password === "") && (
                     <p id="passwordReqs" className="instructions">
                         Password must contain:
                         <br />
