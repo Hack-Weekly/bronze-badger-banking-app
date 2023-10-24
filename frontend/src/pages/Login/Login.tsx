@@ -1,6 +1,7 @@
 // TODO : add error message handle on login submit
 
 import { useRef, useState, useEffect } from "react";
+import axios from "axios";
 import "./login.scss";
 
 const Login = () => {
@@ -22,19 +23,25 @@ const Login = () => {
             errRef.current?.classList.remove("hidden");
         }
     }, [errMsg]);
+    
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const formData = new FormData(e.target as HTMLFormElement);
+            const data = Object.fromEntries(formData.entries());
+            const response = await axios.post("http://localhost:3000/auth/login", data);
+            // Handle the response as needed, eg. set user authentication state.
+            console.log(response.data);
+        } catch (error) {
+            console.error("Login failed:", error);
+            setErrMsg("Login failed. Please check your credentials.");
+        }
+    };
+
 
     return (
         <div className="login">
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.target as HTMLFormElement);
-                    const data = Object.fromEntries(formData.entries());
-                    // no back end yet so just log the data
-                    console.log(data);
-                    // data.username and data.password are the values from the form
-                }}
-            >
+            <form onSubmit = {handleSubmit}>
                 {errMsg && (
                     <p ref={errRef} className="error">
                         {errMsg}
@@ -44,7 +51,7 @@ const Login = () => {
                 <label htmlFor="username">Username</label>
                 <input
                     type="text"
-                    name="username"
+                    name="name"
                     id="username"
                     placeholder="Username"
                     onChange={(e) => {
