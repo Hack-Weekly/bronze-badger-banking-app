@@ -7,7 +7,6 @@ const checkIfEmailExists = require('../middlewares/emailExistsMiddleware.js')
 //routers to handle authentications
 router.post('/signup', checkIfEmailExists, userValidation, signupController);
 router.post('/login', loginController)
-// router.post('/login', loginController);
 // router.get('/logout', logoutController); 
   
 module.exports = router;

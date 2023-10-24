@@ -1,12 +1,12 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //login
 const loginController = async(req, res, next)=>{
     try{
-        const {name, password} = req.body;
-        const user = await User.findOne({name: name})
+        const {email, password} = req.body;
+        const user = await User.findOne({email: email})
 
         if (!user) return next(new Error('User not found'));
 
