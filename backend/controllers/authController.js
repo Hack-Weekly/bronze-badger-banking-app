@@ -37,4 +37,9 @@ const signupController = async(req, res)=> {
     }
 }
 
-module.exports = {signupController, loginController};
+//function for logging out user
+const logoutController = async(req, res) => {
+    res.clearCookie('access_token');
+};
+
+module.exports = {signupController, loginController, logoutController};
