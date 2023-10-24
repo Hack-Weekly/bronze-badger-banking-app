@@ -5,17 +5,17 @@ import axios from "axios";
 import "./login.scss";
 
 const Login = () => {
-    const [username, setUsername] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     // error message will be displayed if errMsg is not empty
     // we will set the error message when an error
     // occurs during login (e.g. wrong username or password)
     const [errMsg, setErrMsg] = useState<string>("");
     const errRef = useRef<HTMLParagraphElement>(null);
-    const usernameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        usernameRef.current?.focus();
+        emailRef.current?.focus();
     }, []);
 
     useEffect(() => {
@@ -48,18 +48,18 @@ const Login = () => {
                     </p>
                 )}
                 <h1>Login</h1>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email</label>
                 <input
-                    type="text"
-                    name="name"
-                    id="username"
-                    placeholder="Username"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
                     onChange={(e) => {
-                        setUsername(e.target.value);
+                        setEmail(e.target.value);
                     }}
-                    value={username}
+                    value={email}
                     required
-                    ref={usernameRef}
+                    ref={emailRef}
                 />
                 <label htmlFor="password">Password</label>
                 <input

@@ -15,10 +15,6 @@ const userSchema = new Schema({
         type:String,
         required:true,
     },
-    isAdmin: {
-        type: Boolean,
-        default:false,
-    },
 });
 
 // Middleware to hash the password before saving
