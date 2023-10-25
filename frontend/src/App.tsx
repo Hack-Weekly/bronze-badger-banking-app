@@ -5,6 +5,7 @@ import Transfer from "./pages/Transaction/Transfer.tsx";
 import Login from "./pages/Login/Login.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory.tsx";
+import ManageAccounts from "./pages/Accounts/Accounts.tsx";
 
 import Menu from "./components/Menu/Menu.tsx";
 import Footer from "./components/Footer/Footer.tsx";
@@ -61,6 +62,10 @@ function App() {
         {
           path:"/transactionHistory",
           element:<TransactionHistory/>
+        },
+        {
+          path:"/accounts",
+          element:<ManageAccounts/>
         }
       ]
     },

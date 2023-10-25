@@ -27,6 +27,11 @@ export const menu = [
                 id: 5,
                 title: "Transactions",
                 url: "/transactionHistory",
+            },
+            {
+                id: 6,
+                title: "Manage Accounts",
+                url: "/accounts",
             }
         ]
     },
