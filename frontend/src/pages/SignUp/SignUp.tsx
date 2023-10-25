@@ -1,6 +1,7 @@
 // TODO: add error message handling for login submit errors
 // on server error response
 import { useRef, useState, useEffect } from "react";
+import axios from "axios";
 import "./signup.scss";
 
 const SignUp = () => {
@@ -46,14 +47,25 @@ const SignUp = () => {
         return PWD_REGEX.test(password);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (isPasswordValid(formData.password)) {
-            // no back end yet so just log the data
-            console.log(formData);
-            // data.username and data.password are the values from the form
-        } else {
-            setErrMsg("Invalid password");
+        try {
+            const formData = new FormData(e.target as HTMLFormElement);
+            const data = {
+                name: formData.get("username") as string,
+                email: formData.get("email") as string,
+                password: formData.get("password") as string
+            };
+
+            if (isPasswordValid(data.password)) {
+                const response = await axios.post("http://localhost:3000/auth/signup", data);
+                console.log(response)
+            } else {
+                setErrMsg("Invalid password");
+            }
+        } catch (error) {
+            console.error("Register failed:", error);
+            setErrMsg("Register failed.");
         }
     };
 
@@ -70,6 +82,15 @@ const SignUp = () => {
                     name="username"
                     id="username"
                     placeholder="Username"
+                    required
+                    onChange={handleInputChange}
+                />
+                <label htmlFor="email">Email</label>
+                <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
                     required
                     onChange={handleInputChange}
                 />
