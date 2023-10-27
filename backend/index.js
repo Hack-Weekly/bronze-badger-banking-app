@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const ErrorHandler = require('./middlewares/errorHandler');
 const authRouter = require('./routes/authRouter');
 const cookieParser = require("cookie-parser");
-const cors = require("cors")
+const cors = require("cors");
+const accountRouter = require('./routes/accountRouter');
 const PORT = 3000;
 require('dotenv').config();
 
@@ -18,6 +19,7 @@ app.use(cookieParser())
 
 //router
 app.use('/auth', authRouter);
+app.use('/accounts', accountRouter);
 
 //error handler middleware
 app.use(ErrorHandler);

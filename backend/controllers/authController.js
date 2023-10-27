@@ -14,11 +14,11 @@ const loginController = async(req, res, next)=>{
         if (!isValidPassword)
             return next(new Error('Invalid password'));
 
-        const token = jwt.sign({id:user._id}, process.env.JWT)
+        const token = jwt.sign({user:{id:user._id}}, process.env.JWT)
 
         res.cookie("access_token", token, {
             httpOnly: true,
-        }).status(201).json({user})
+        }).status(201).json({token})
     } catch(error){
         next(error); // Pass the error to the error handling middleware
     }
