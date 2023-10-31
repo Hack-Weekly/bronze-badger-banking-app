@@ -18,7 +18,10 @@ const loginController = async(req, res, next)=>{
 
         res.cookie("access_token", token, {
             httpOnly: true,
-        }).status(201).json({token})
+            sameSite: "None",
+            secure: false,
+            path: '/',
+        }).status(201).json({token});
     } catch(error){
         next(error); // Pass the error to the error handling middleware
     }
@@ -38,8 +41,9 @@ const signupController = async(req, res)=> {
 }
 
 //function for logging out user
-const logoutController = async(req, res) => {
+const logoutController = async (req, res) => {
     res.clearCookie('access_token');
+    res.status(200).json({ message: 'Logged out successfully' });
 };
 
 module.exports = {signupController, loginController, logoutController};

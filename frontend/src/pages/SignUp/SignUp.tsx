@@ -52,7 +52,7 @@ const SignUp = () => {
         try {
             const formData = new FormData(e.target as HTMLFormElement);
             const data = {
-                name: formData.get("username") as string,
+                name: formData.get("name") as string,
                 email: formData.get("email") as string,
                 password: formData.get("password") as string
             };
@@ -76,12 +76,12 @@ const SignUp = () => {
                     {errMsg}
                 </p>
                 <h1>Sign Up</h1>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="name">Name</label>
                 <input
                     type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Username"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
                     required
                     onChange={handleInputChange}
                 />

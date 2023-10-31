@@ -10,12 +10,15 @@ const PORT = 3000;
 require('dotenv').config();
 
 //middlwares
-app.use(cors())
+app.use(cors({
+    origin: "http://127.0.0.1:5173",
+    credentials: true,
+}))
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.static("content"))
 app.use(express.urlencoded({extended: false}))
 
-app.use(cookieParser())
 
 //router
 app.use('/auth', authRouter);

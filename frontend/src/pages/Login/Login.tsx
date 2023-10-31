@@ -1,6 +1,7 @@
 // TODO : add error message handle on login submit
-
+import React from 'react';
 import { useRef, useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./login.scss";
 
@@ -13,6 +14,7 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState<string>("");
     const errRef = useRef<HTMLParagraphElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         emailRef.current?.focus();
@@ -29,9 +31,14 @@ const Login = () => {
         try {
             const formData = new FormData(e.target as HTMLFormElement);
             const data = Object.fromEntries(formData.entries());
-            const response = await axios.post("http://localhost:3000/auth/login", data);
+            const response = await axios.post("http://localhost:3000/auth/login", data, {
+                withCredentials: true,
+            });
+            if (response.status == 201){
+                navigate('/');
+            }
             // Handle the response as needed, eg. set user authentication state.
-            console.log(response.data);
+            console.log(response.status);
         } catch (error) {
             console.error("Login failed:", error);
             setErrMsg("Login failed. Please check your credentials.");
