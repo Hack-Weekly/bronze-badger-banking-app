@@ -17,18 +17,19 @@ const CreateAccount = () => {
         accountType: accountType,
         transactionLimit: parseInt(transactionLimit, 10) || 0,
       };
-      console.log(formData);
 
       const response = await axios.post(
         "http://localhost:3000/accounts/create-account",
-        formData
+        formData,
+        {
+          withCredentials: true,
+        }
       );
       if (response.status === 200) {
         setSuccessMessage(`${accountName} created successfully!`);
       } else {
         setSuccessMessage("");
       }
-      console.log(response);
     } catch (error) {
       console.log("Create account failed:", error);
       setSuccessMessage("");
