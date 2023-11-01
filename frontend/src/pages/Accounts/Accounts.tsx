@@ -2,36 +2,33 @@ import "./accounts.scss";
 import { useState, useEffect } from "react";
 import AccountList from "../../components/AccountList/AccountList";
 import { Outlet } from "react-router-dom";
+import axios from "axios";
+import cookie from 'react-cookie';
 
 const ManageAccounts = () => {
-  //const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
 
-  const accounts = [
-    {
-      _id: 490823,
-      accountName: "Joe's savings account",
-      accountType: "savings",
-      balance: 4968.09,
-      amount: 1000,
-      owner: "653718441f0a55cf2992358b",
-    },
-    {
-      _id: 490825,
-      accountName: "Emergency fund",
-      accountType: "savings",
-      balance: 4968.09,
-      amount: 1000,
-      owner: "653718441f0a55cf2992358b",
-    },
-    {
-      _id: 490824,
-      accountName: "Checking Account",
-      accountType: "checking",
-      balance: 4968.09,
-      amount: 1000,
-      owner: "653718441f0a55cf2992358b",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userTokenResponse = await axios.get("http://localhost:3000/auth/get-token", {
+          withCredentials: true,
+        });
+        const userToken = userTokenResponse.data.token;
+        const response = await axios.get("http://localhost:3000/accounts/user-accounts", {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+          withCredentials: true,
+        });
+        setAccounts(response.data.accounts); // Update the state with the data
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>

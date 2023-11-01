@@ -1,33 +1,31 @@
-import "./accountList.scss";
-import { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./accountList.scss";
 
 interface AccountListProps {
   accounts: Account[];
 }
 
 interface Account {
-  _id: number;
-  accountName: String;
-  accountType: String;
+  _id: string;
+  accountName: string;
+  accountType: string;
   balance: number;
-  amount: number;
-  owner: String;
+  transactionLimit: number;
+  owner: string;
 }
 
 const AccountList: React.FC<AccountListProps> = ({ accounts }) => {
   const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
-    //backend logic
+    // Backend logic
     navigate("/accounts/createAccount");
-    console.log("account create clicked");
   };
 
-  const handleRowClick = () => {
-    //logic to redirect to account page where actions will be instructed/prompted
-    console.log("account clicked"); 
+  const handleRowClick = (accountId: string) => {
+    //navigate(`/accounts/${accountId}`);
   };
 
   return (
@@ -39,13 +37,19 @@ const AccountList: React.FC<AccountListProps> = ({ accounts }) => {
           <thead>
             <tr>
               <th>Account Name</th>
+              <th>Account Type</th>
               <th>Balance</th>
             </tr>
           </thead>
           <tbody>
             {accounts.map((account) => (
-              <tr key={account._id} onClick={handleRowClick}>
-                <td>{account.accountName}</td>
+              <tr key={account._id} onClick={() => handleRowClick(account._id)}>
+                <td>
+                  <span className="account-name">{account.accountName}</span>
+                </td>
+                <td>
+                  <span className="account-type">{account.accountType}</span>
+                </td>
                 <td>
                   <span className="balance">${account.balance}</span>
                 </td>
@@ -60,4 +64,5 @@ const AccountList: React.FC<AccountListProps> = ({ accounts }) => {
     </div>
   );
 };
+
 export default AccountList;

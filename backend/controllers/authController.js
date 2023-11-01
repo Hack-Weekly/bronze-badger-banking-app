@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const parseUserIdFromAccessToken = require('../utils/validators');
 
 //login
 const loginController = async(req, res, next)=>{
@@ -33,7 +34,7 @@ const signupController = async(req, res)=> {
     try {
         const user = new User({ name, email, password });
         await user.save();
-        
+
         const token = jwt.sign({user:{id:user._id}}, process.env.JWT)
 
         res.cookie("access_token", token, {
@@ -54,4 +55,13 @@ const logoutController = async (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
 };
 
-module.exports = {signupController, loginController, logoutController};
+const getToken = async(req, res) => {
+    const token = req.cookies.access_token;
+    if (token){
+        res.status(200).json({token})
+    } else{
+        res.status(404).json({error: "token not found"})
+    }
+}
+
+module.exports = {signupController, loginController, logoutController, getToken};
