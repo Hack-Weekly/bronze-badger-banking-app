@@ -1,17 +1,29 @@
 import { useState } from "react";
 import "./transfer.scss";
+import axios from "axios";
 
 const Transfer = () => {
   const [amount, setAmount] = useState("");
   const [target, setTarget] = useState("");
   const [message, setMessage] = useState("");
 
-  const handlePay = () => {
-    //Handle payment logic
+  const handlePay = async (e?: React.FormEvent<HTMLFormElement>) => {
+    if(e){
+      e.preventDefault();
+    }
+
+    const requestData = {
+      amount: parseFloat(amount),
+      email: target,
+      message,
+    }
+    const response = await axios.post("http://localhost:3000/transfer/pay", requestData, {
+      withCredentials: true
+    })
   };
 
   const handleRequest = () => {
-    //Handle request logic
+
   };
 
   return (
@@ -21,7 +33,7 @@ const Transfer = () => {
         <div className="form-group">
           <label htmlFor="amount">Amount</label>
           <input
-            type="text"
+            type="number"
             id="amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
@@ -34,7 +46,7 @@ const Transfer = () => {
           <input
             type="text"
             id="target"
-            placeholder="Username or phone number"
+            placeholder="Email"
             value={target}
             onChange={(e) => setTarget(e.target.value)}
           />
@@ -48,7 +60,7 @@ const Transfer = () => {
           />
         </div>
         <div className="button-group">
-          <button type="button" onClick={handlePay}>
+          <button type="button" onClick={() => handlePay()}>
             Pay
           </button>
           <button type="button" onClick={handleRequest}>
