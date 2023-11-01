@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const isAuthenticated = require('../middlewares/auth')
 const {payController} = require('../controllers/transferController');
-const {parseEmailFromUserID} = require('../utils/parseEmailFromUserID');
+const {parseEmailFromUserID} = require('../utils/parseToken');
 
 // Create account route
 router.post('/pay', payController);

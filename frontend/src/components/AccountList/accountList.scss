@@ -1,87 +1,85 @@
-@import "../../styles/variables.scss";
-$lighten-color: #929292;
-
 .manage-accounts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  
-    h1 {
-      font-size: 24px;
-      margin: 20px 0;
-      color: $main-color;
-    }
-  
-    h2 {
-      margin: 0;
-      color: $main-color;
+  text-align: center;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #555;
+  margin: 20px 0;
+}
+
+.account-list {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; // Rounded corners
+    overflow: hidden; // Hide content outside the rounded corners
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
     }
 
-    .create-button {
-      background-color: $soft-bg;
-      color: green;
-      border: 1px solid $dark-color;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 10px;
-      margin: 20px 0;
+    th {
+      background-color: #f2f2f2;
+      color: #333;
       font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.3s, color 0.3s;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      border-radius: 10px; // Rounded corners
 
       &:hover {
-        background-color: $soft-bg;
-        color: $main-color;
+        background-color: #f5f5f5;
       }
-    }
-  
-    .account-list {
-      width: 50%;
-      margin: 0 auto;
-      background-color: $soft-bg;
-      border: 1px solid $dark-color;
-      border-radius: 10px;
-      overflow: hidden;
-  
-      table {
-        width: 100%;
-        border-collapse: collapse;
-  
-        th,
-        td {
-          padding: 10px;
-          color: $main-color;
+
+      td {
+        text-align: center;
+
+        .account-name {
+          font-weight: bold;
+          color: #333; // Darker color
         }
-  
-        th {
-          border-right: 1px solid $dark-color;
-          border-bottom: 1px solid $dark-color;
+
+        .account-type {
+          font-weight: bold;
+          color: #555; // Slightly darker color
         }
-  
-        td {
-          border-right: 1px solid $dark-color;
-          text-align: left;
-  
-          &:last-child {
-            border-right: none;
-          }
-  
-          &:hover {
-            cursor: pointer;
-            background-color: $lighten-color;
-          }
-  
-          .balance {
-            font-weight: bold;
-            float: right;
-            color: green;
-            padding-right: 10px;
-          }
+
+        .balance {
+          font-weight: bold;
+          color: #33c33c;
         }
       }
     }
   }
+}
+
+.create-button {
+  background-color: #0074d9;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px; // Rounded corners
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
