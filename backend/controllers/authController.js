@@ -33,7 +33,15 @@ const signupController = async(req, res)=> {
     try {
         const user = new User({ name, email, password });
         await user.save();
-        res.status(201).json({ message: 'User registered successfully' });
+        
+        const token = jwt.sign({user:{id:user._id}}, process.env.JWT)
+
+        res.cookie("access_token", token, {
+            httpOnly: true,
+            sameSite: "None",
+            secure: true,
+            path: '/',
+        }).status(201).json({token});
     } catch (error) {
         console.error('Error creating user:', error);
         next(error); // Pass the error to the error handling middleware

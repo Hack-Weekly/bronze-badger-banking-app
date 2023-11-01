@@ -1,6 +1,7 @@
 // TODO: add error message handling for login submit errors
 // on server error response
 import { useRef, useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./signup.scss";
 
@@ -14,6 +15,7 @@ const SignUp = () => {
 
     const errRef = useRef<HTMLParagraphElement>(null);
     const userRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         userRef.current?.focus();
@@ -59,7 +61,10 @@ const SignUp = () => {
 
             if (isPasswordValid(data.password)) {
                 const response = await axios.post("http://localhost:3000/auth/signup", data);
-                console.log(response)
+
+                if (response.status == 201){
+                    navigate('/home');
+                }
             } else {
                 setErrMsg("Invalid password");
             }
