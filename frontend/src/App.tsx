@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Home from "./pages/Home/Home.tsx";
 import Transfer from "./pages/Transaction/Transfer.tsx";
@@ -11,15 +11,23 @@ import Menu from "./components/Menu/Menu.tsx";
 import Footer from "./components/Footer/Footer.tsx";
 import Navbar from "./components/Navbar/navbar.tsx";
 
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Route, useNavigate } from "react-router-dom";
 
-import "./styles/global.scss"
+import "./styles/global.scss";
+import Landing from "./pages/Landing/Landing.tsx";
 
 function App() {
-  const Layout = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the "access_token" cookie is present
+    setIsLoggedIn(document.cookie.includes("access_token"));
+  }, []);
+
+  function Layout() {
     return (
       <div className="main">
-        <Navbar/>
+        <Navbar />
         <div className="container">
           <div className="menuContainer">
             <Menu />
@@ -28,50 +36,71 @@ function App() {
             <Outlet />
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
-      
     );
   };
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout/>,
-      children:[
+      element: <Landing />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <SignUp />,
+    },
+    {
+      element: <Layout />,
+      children: [
         {
-          path: "/",
-          element: <Home/>
+          path: "/home",
+          element: <Home />,
         },
         {
           path: "/transfer",
-          element: <Transfer/>
+          element: <Transfer />,
         },
         {
           path: "/placeholder",
-          element: <Transfer/>
+          element: <Transfer />,
         },
         {
-          path:"/login",
-          element:<Login/>
+          path: "/transactionHistory",
+          element: <TransactionHistory />,
         },
         {
-          path:"/register",
-          element:<SignUp/>
+          path: "accounts",
+          element: <ManageAccounts />,
         },
-        {
-          path:"/transactionHistory",
-          element:<TransactionHistory/>
-        },
-        {
-          path:"/accounts",
-          element:<ManageAccounts/>
-        }
-      ]
+      ],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  function MainApp() {
+    const navigate = useNavigate();
+
+    const goToRouter = () => {
+      navigate("/app");
+    };
+
+    return (
+      <div>
+        <Landing />
+        <button onClick={goToRouter}>Go to App</button>
+      </div>
+    );
+  }
+
+  return (
+    <RouterProvider router={router}>
+      <MainApp />
+    </RouterProvider>
+  );
 }
 
 export default App;

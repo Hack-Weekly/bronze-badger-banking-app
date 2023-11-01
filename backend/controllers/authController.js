@@ -19,7 +19,7 @@ const loginController = async(req, res, next)=>{
         res.cookie("access_token", token, {
             httpOnly: true,
             sameSite: "None",
-            secure: false,
+            secure: true,
             path: '/',
         }).status(201).json({token});
     } catch(error){

@@ -35,10 +35,10 @@ const Login = () => {
                 withCredentials: true,
             });
             if (response.status == 201){
-                navigate('/');
+                navigate('/home');
             }
             // Handle the response as needed, eg. set user authentication state.
-            console.log(response.status);
+            console.log(response);
         } catch (error) {
             console.error("Login failed:", error);
             setErrMsg("Login failed. Please check your credentials.");

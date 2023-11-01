@@ -6,7 +6,7 @@ export const menu = [
             {
                 id:1,
                 title: "Home",
-                url: "/",
+                url: "/home",
             },
             {
                 id:2,
@@ -15,21 +15,11 @@ export const menu = [
             },
             {
                 id: 3,
-                title: "Sign In",
-                url: "/login",
-            },
-            {
-                id: 4,
-                title: "Sign Up",
-                url: "/register",
-            },
-            {
-                id: 5,
                 title: "Transactions",
                 url: "/transactionHistory",
             },
             {
-                id: 6,
+                id: 4,
                 title: "Manage Accounts",
                 url: "/accounts",
             }
