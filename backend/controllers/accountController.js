@@ -1,4 +1,5 @@
 const Account = require('../models/accountModel');
+const jwt = require('jsonwebtoken');
 
 const generateAccountNumber = () => {
     // Generate a random 8-digit number
@@ -6,17 +7,40 @@ const generateAccountNumber = () => {
     return randomAccountNumber.toString();
   };
 
+  function parseUserIdFromAccessToken(token) {
+    try {
+      const decodedToken = jwt.verify(token, process.env.JWT);
+      console.log(decodedToken)
+  
+      if (decodedToken && decodedToken.user && decodedToken.user.id) {
+        return decodedToken.user.id;
+      } else {
+        throw new Error('Invalid token structure');
+      }
+    } catch (error) {
+      throw new Error('Invalid token');
+    }
+  }
+
 const createAccount = async (req, res) => {
-    const { accountType } = req.body;
-    const owner = req.user.id;
+    const { accountType, accountName } = req.body;
+    const access_token = req.cookies.access_token;
+    if (!access_token) {
+      return res.status(401).json({ success: false, message: 'You are not logged in.' });
+    }
+
+    const owner = parseUserIdFromAccessToken(access_token);
+    const transactionLimit = 500;
   
     try {
       const accountNumber = generateAccountNumber();
   
       const newAccount = new Account({
         accountNumber,
+        accountName,
         accountType,
-        owner
+        transactionLimit,
+        owner,
       });
 
     await newAccount.save();
@@ -29,5 +53,6 @@ const createAccount = async (req, res) => {
 };
 
 module.exports = {
-  createAccount
+  createAccount,
+  parseUserIdFromAccessToken
 };

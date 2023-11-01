@@ -1,5 +1,7 @@
 import "./accountList.scss";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface AccountListProps {
   accounts: Account[];
@@ -15,10 +17,11 @@ interface Account {
 }
 
 const AccountList: React.FC<AccountListProps> = ({ accounts }) => {
+  const navigate = useNavigate();
 
   const handleCreateAccount = async () => {
     //backend logic
-    //redirect to a create account page with form & instructions
+    navigate("/accounts/createAccount");
     console.log("account create clicked");
   };
 

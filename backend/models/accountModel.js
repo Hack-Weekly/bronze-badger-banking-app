@@ -7,10 +7,18 @@ const AccountSchema = new Schema({
         required: true,
         unique: true
     },
+    accountName: {
+        type: String,
+        required: true,
+    },
     accountType: {
         type: String,
         required: true,
         enum:['savings', 'checking', 'emergency']
+    },
+    transactionLimit:{
+        type:Number,
+        default:0
     },
     balance:{
         type:Number,

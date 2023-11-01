@@ -15,6 +15,7 @@ import { createBrowserRouter, RouterProvider, Outlet, Route, useNavigate } from 
 
 import "./styles/global.scss";
 import Landing from "./pages/Landing/Landing.tsx";
+import CreateAccount from "./pages/Accounts/CreateAccount/CreateAccount.tsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -74,8 +75,19 @@ function App() {
           element: <TransactionHistory />,
         },
         {
-          path: "accounts",
-          element: <ManageAccounts />,
+          path: "/accounts/*",
+          children: [
+            {
+              path: "",
+              element: (
+                <ManageAccounts />
+              ),
+            },
+            {
+              path: "createAccount",
+              element: <CreateAccount />,
+            },
+          ],
         },
       ],
     },
