@@ -1,76 +1,108 @@
 .main {
-    text-align: center;
-  
-    .title {
-      font-size: 24px;
+  text-align: center;
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .transfer-form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+
+    .form-group {
       margin-bottom: 20px;
-    }
-  
-    .transfer-form {
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: left;
-  
-      .form-group {
-        margin-bottom: 20px;
-  
+
+      label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      textarea {
+        height: 120px;
+      }
+
+      &.to-group {
         label {
-          display: block;
-          font-size: 16px;
-          margin-bottom: 5px;
+          display: inline;
+          font-weight: bold;
+          margin-right: 10px;
         }
-  
-        input,
-        textarea {
-          width: 100%;
-          padding: 10px;
-          font-size: 16px;
-          font-family: Arial, sans-serif;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-        }
-  
-        textarea {
-          height: 120px;
-        }
-  
-        .to-group {
-          label {
-            display: inline;
-            font-weight: bold;
-            margin-right: 10px;
-          }
-  
-          input::placeholder {
-            color: #999;
-          }
+
+        input::placeholder {
+          color: #999;
         }
       }
-  
-      .button-group {
-        display: flex;
-        justify-content: space-between;
-  
-        button {
-          flex: 1;
-          padding: 10px;
-          font-size: 18px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-  
-        button:first-child {
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        flex: 1;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:first-child {
           background-color: #0272f1;
           color: #fff;
           margin-right: 10px;
         }
-  
-        button:last-child {
+
+        &:last-child {
           background-color: #02b443;
           color: #fff;
         }
       }
     }
   }
-  
+}
+
+.receipt {
+  width: 50%;
+  margin: 30px auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #000;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 5px 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      font-weight: bold;
+    }
+
+    &.sender,
+    &.receiver {
+      font-weight: normal;
+      color: #007bff;
+    }
+  }
+}

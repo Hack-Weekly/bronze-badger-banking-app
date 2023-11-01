@@ -21,13 +21,10 @@ const payController = async (req, res, next) =>{
             owner: sender,
             accountType: 'chequeing',
           });
-          console.log(sender)
-          console.log(senderCheckingAccount);
           const receiverSavingsAccount = await Account.findOne({
             owner: receiverUser._id,
             accountType: 'savings',
           });
-          console.log(receiverSavingsAccount);
 
           if (!senderCheckingAccount || !receiverSavingsAccount) {
             return res.status(400).json({ success: false, message: 'Invalid account(s).' });
@@ -49,7 +46,7 @@ const payController = async (req, res, next) =>{
             receiver: receiverUser._id
         });
         await transaction.save();
-        res.status(201).json({ message: 'Payment successful' });
+        res.status(201).json({ transaction });
     }catch(error){
         console.error(error);
     res.status(500).json({ success: false, message: 'Payment error.' });
