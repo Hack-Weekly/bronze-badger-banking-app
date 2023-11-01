@@ -56,7 +56,7 @@ const CreateAccount = () => {
             onChange={(e) => setAccountType(e.target.value)}
           >
             <option value="savings">Savings</option>
-            <option value="checking">Checking</option>
+            <option value="chequeing">Checking</option>
           </select>
         </label>
         <label>
