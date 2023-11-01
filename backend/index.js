@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const ErrorHandler = require('./middlewares/errorHandler');
 const authRouter = require('./routes/authRouter');
+const transferRouter = require('./routes/transferRouter');
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const accountRouter = require('./routes/accountRouter');
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended: false}))
 //router
 app.use('/auth', authRouter);
 app.use('/accounts', accountRouter);
+app.use('/transfer', transferRouter);
 
 //error handler middleware
 app.use(ErrorHandler);

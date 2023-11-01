@@ -1,26 +1,12 @@
 const Account = require('../models/accountModel');
 const jwt = require('jsonwebtoken');
+const {parseUserIdFromAccessToken} = require('../utils/validators')
 
 const generateAccountNumber = () => {
     // Generate a random 8-digit number
     const randomAccountNumber = Math.floor(10000000 + Math.random() * 90000000);
     return randomAccountNumber.toString();
   };
-
-  function parseUserIdFromAccessToken(token) {
-    try {
-      const decodedToken = jwt.verify(token, process.env.JWT);
-      console.log(decodedToken)
-  
-      if (decodedToken && decodedToken.user && decodedToken.user.id) {
-        return decodedToken.user.id;
-      } else {
-        throw new Error('Invalid token structure');
-      }
-    } catch (error) {
-      throw new Error('Invalid token');
-    }
-  }
 
 const createAccount = async (req, res) => {
     const { accountType, accountName } = req.body;

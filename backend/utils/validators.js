@@ -21,6 +21,19 @@ const validatePassword = (password) => {
   return passwordRegex.test(password); //* checks whether the entered password matches the specified condition and returns true or false accordingly
 };
 
+function parseUserIdFromAccessToken(token) {
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT);
+
+    if (decodedToken && decodedToken.user && decodedToken.user.id) {
+      return decodedToken.user.id;
+    } else {
+      throw new Error('Invalid token structure');
+    }
+  } catch (error) {
+    throw new Error('Invalid token');
+  }
+}
 
   /*
   //* For manually testing the validation functions
@@ -31,4 +44,4 @@ const validatePassword = (password) => {
   );
   */
   
-  module.exports = { validateName, validateEmail, validatePassword };
+  module.exports = { validateName, validateEmail, validatePassword, parseUserIdFromAccessToken };
