@@ -1,15 +1,20 @@
-.footer{
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 30px;
-
-    span{
-        &:first-child{
-            font-weight: bold;
-        }
-        &:last-child{
-            font-size: 14px;
-        }
+  
+    span {
+      &:first-child {
+        font-weight: bold;
+      }
+      &:last-child {
+        font-size: 14px;
+      }
     }
-}
+  }
+  

@@ -12,6 +12,4 @@ router.get('/transaction-history', isAuthenticated, getTransactionHistory);
 router.post('/deposit', isAuthenticated, deposit);
 
 
-
-
 module.exports = router;

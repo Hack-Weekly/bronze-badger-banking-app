@@ -35,6 +35,20 @@ function parseUserIdFromAccessToken(token) {
   }
 }
 
+function parseNameFromAccessToken(token){
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT);
+
+    if (decodedToken && decodedToken.user && decodedToken.user.name) {
+      return decodedToken.user.name;
+    } else {
+      throw new Error('Invalid token structure');
+    }
+  } catch (error) {
+    throw new Error('Invalid token');
+  }
+}
+
   /*
   //* For manually testing the validation functions
   console.log(
@@ -44,4 +58,4 @@ function parseUserIdFromAccessToken(token) {
   );
   */
   
-  module.exports = { validateName, validateEmail, validatePassword, parseUserIdFromAccessToken };
+  module.exports = { validateName, validateEmail, validatePassword, parseUserIdFromAccessToken, parseNameFromAccessToken };

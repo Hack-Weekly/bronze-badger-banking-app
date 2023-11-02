@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const parseUserIdFromAccessToken = require('../utils/validators');
+const {parseUserIdFromAccessToken, parseNameFromAccessToken} = require('../utils/validators');
 
 //login
 const loginController = async(req, res, next)=>{
@@ -15,7 +15,7 @@ const loginController = async(req, res, next)=>{
         if (!isValidPassword)
             return next(new Error('Invalid password'));
 
-        const token = jwt.sign({user:{id:user._id}}, process.env.JWT)
+        const token = jwt.sign({user:{id:user._id, name: user.name}}, process.env.JWT)
 
         res.cookie("access_token", token, {
             httpOnly: true,
@@ -35,7 +35,7 @@ const signupController = async(req, res)=> {
         const user = new User({ name, email, password });
         await user.save();
 
-        const token = jwt.sign({user:{id:user._id}}, process.env.JWT)
+        const token = jwt.sign({user:{id:user._id, name: user.name}}, process.env.JWT)
 
         res.cookie("access_token", token, {
             httpOnly: true,
@@ -64,4 +64,15 @@ const getToken = async(req, res) => {
     }
 }
 
-module.exports = {signupController, loginController, logoutController, getToken};
+const getName = async (req, res) => {
+    try{
+        token = req.cookies.access_token;
+        const name = parseNameFromAccessToken(token);
+        res.status(200).json({name})
+    }catch(error){
+        res.status(500).json({ error: 'An error occurred while fetching user name' });
+    }
+
+}
+
+module.exports = {signupController, loginController, logoutController, getToken, getName};

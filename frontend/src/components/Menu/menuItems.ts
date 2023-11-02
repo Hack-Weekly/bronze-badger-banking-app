@@ -25,36 +25,4 @@ export const menu = [
             }
         ]
     },
-    {
-        id:2,
-        title: "placeholder",
-        listItems:[
-            {
-                id:1,
-                title: "placeholder",
-                url: "/placeholder",
-            },
-            {
-                id:2,
-                title: "placeholder",
-                url: "/placeholder",
-            },
-        ]
-    },
-    {
-        id:3,
-        title: "placeholder",
-        listItems:[
-            {
-                id:1,
-                title: "placeholder",
-                url: "/placeholder",
-            },
-            {
-                id:2,
-                title: "placeholder",
-                url: "/placeholder",
-            },
-        ]
-    },
 ]

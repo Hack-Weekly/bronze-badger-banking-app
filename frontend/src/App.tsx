@@ -18,13 +18,6 @@ import Landing from "./pages/Landing/Landing.tsx";
 import CreateAccount from "./pages/Accounts/CreateAccount/CreateAccount.tsx";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check if the "access_token" cookie is present
-    setIsLoggedIn(document.cookie.includes("access_token"));
-  }, []);
-
   function Layout() {
     return (
       <div className="main">
