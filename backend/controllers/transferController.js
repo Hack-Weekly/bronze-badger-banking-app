@@ -46,6 +46,16 @@ const payController = async (req, res, next) =>{
             receiver: receiverUser._id
         });
         await transaction.save();
+        
+          // Save transaction in transaction history
+        const transactionHistory = new TransactionHistory({
+            fromAccount: senderCheckingAccount._id,
+            toAccount: receiverSavingsAccount._id,
+            amount,
+            type: 'transfer'
+        });
+        await transactionHistory.save();
+
         res.status(201).json({ transaction });
     }catch(error){
         console.error(error);
