@@ -1,63 +1,65 @@
 .signup {
     display: flex;
+    font-family: "Inter", sans-serif;
     justify-content: center;
     align-items: center;
-}
-
-.signup form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #4c4f55;
+    min-height: 100vh; 
+    background-color: #f4f4f4; 
+  }
+  
+  .signup form {
+    background-color: #ffffff;
     border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-}
-
-.signup form > h1 {
+    text-align: center; 
+  }
+  
+  .signup form h1 {
     font-size: 2rem;
     margin-bottom: 20px;
-}
-
-.signup label {
+    color: #333; 
+  }
+  
+  .signup label {
     font-size: 1.2rem;
     margin-bottom: 5px;
-}
-
-.signup input:focus {
+    display: block; 
+    color: #555; 
+  }
+  
+  .signup input:focus {
     outline: none;
-}
-
-.signup input[type="text"],
-.signup input[type="password"] {
+    border-color: #0077b6;
+  }
+  
+  .signup input[type="text"],
+  .signup input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1rem;
-}
-
-.signup p {
+  }
+  
+  .signup p {
     font-size: 1rem;
     margin: 10px;
-}
-
-.signup input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-.signup input:focus {
-    border: 1px solid black;
-}
-
-.signup button[type="submit"] {
+  }
+  
+  .signup input[type="password"]:not(.valid) {
+    border-color: #e53935; 
+  }
+  
+  .signup input[type="password"] + .instructions {
+    color: #333;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  
+  .signup button[type="submit"] {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -65,41 +67,35 @@
     padding: 10px 20px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.signup button[type="submit"]:hover {
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .signup button[type="submit"]:hover {
     background-color: #023e8a;
-}
-
-.error {
-    color: red;
+  }
+  
+  .error {
+    color: #e53935;
     font-size: 1rem;
     margin-bottom: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-.signin-button {
+  }
+  
+  .signin-button {
     background-color: transparent;
     border: none;
     color: #0077b6;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.signin-button:hover {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .signin-button:hover {
     color: #023e8a;
-}
-
-#username {
-}
-
-#password {
-}
-
-#confirm-password {
-}
+  }
+  
+  #name,
+  #email,
+  #password,
+  #confirm-password {
+  }
+  

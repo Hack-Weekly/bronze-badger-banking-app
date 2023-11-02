@@ -1,63 +1,59 @@
 .login {
     display: flex;
+    font-family: "Inter", sans-serif;
     justify-content: center;
     align-items: center;
-}
-
-.login form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #4c4f55;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .login form {
+    background-color: #ffffff;
     border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-}
-
-.login form > h1 {
+    text-align: center;
+  }
+  
+  .login form h1 {
     font-size: 2rem;
     margin-bottom: 20px;
-}
-
-.login label {
+    color: #333;
+  }
+  
+  .login label {
     font-size: 1.2rem;
     margin-bottom: 5px;
-}
-
-.login input:focus {
+    display: block;
+    color: #555;
+  }
+  
+  .login input:focus {
     outline: none;
-}
-
-.login input[type="text"],
-.login input[type="password"] {
+    border-color: #0077b6;
+  }
+  
+  .login input[type="email"],
+  .login input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1rem;
-}
-
-.login p {
+  }
+  
+  .login p {
     font-size: 1rem;
     margin: 10px;
-}
-
-.login input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-.login input:focus {
-    border: 1px solid black;
-}
-
-.login button[type="submit"] {
+  }
+  
+  .login input[type="password"]:not(.valid) {
+    border-color: #e53935;
+  }
+  
+  .login button[type="submit"] {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -65,32 +61,20 @@
     padding: 10px 20px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.login button[type="submit"]:hover {
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .login button[type="submit"]:hover {
     background-color: #023e8a;
-}
-
-.error {
-    color: red;
+  }
+  
+  .error {
+    color: #e53935;
     font-size: 1rem;
     margin-bottom: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-.signin-button {
-    background-color: transparent;
-    border: none;
-    color: #0077b6;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.signin-button:hover {
-    color: #023e8a;
-}
+  }
+  
+  #email,
+  #password {
+  }
+  
