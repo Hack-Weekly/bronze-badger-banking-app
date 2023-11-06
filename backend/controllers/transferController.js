@@ -47,6 +47,7 @@ const payController = async (req, res, next) =>{
         });
         await transaction.save();
         
+        /*
           // Save transaction in transaction history
         const transactionHistory = new TransactionHistory({
             fromAccount: senderCheckingAccount._id,
@@ -55,7 +56,7 @@ const payController = async (req, res, next) =>{
             type: 'transfer'
         });
         await transactionHistory.save();
-
+        */
         res.status(201).json({ transaction });
     }catch(error){
         console.error(error);
