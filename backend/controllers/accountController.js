@@ -52,8 +52,22 @@ const getUserAccounts = async (req, res, next) => {
   }
 };
 
+const getUserAccount = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const accountID = req.params.accountID;
+    const account = await Account.findOne({ _id: accountID, owner: userId });
+    console.log(account)
+    res.json({ success: true, account });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'An error occurred while fetching user account.' });
+  }
+};
+
 module.exports = {
   createAccount,
   parseUserIdFromAccessToken,
-  getUserAccounts
+  getUserAccounts,
+  getUserAccount
 };

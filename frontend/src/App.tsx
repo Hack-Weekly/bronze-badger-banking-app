@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory.tsx";
 import ManageAccounts from "./pages/Accounts/Accounts.tsx";
+import AccountDetails from "./pages/Accounts/AccountDetails/AccountDetails.tsx";
 
 import Menu from "./components/Menu/Menu.tsx";
 import Footer from "./components/Footer/Footer.tsx";
@@ -70,6 +71,10 @@ function App() {
         {
           path: "/accounts/*",
           children: [
+            {
+              path: ":accountID",
+              element: <AccountDetails/>
+            },
             {
               path: "",
               element: (

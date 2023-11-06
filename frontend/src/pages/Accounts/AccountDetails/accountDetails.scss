@@ -1,0 +1,53 @@
+.account-details-container {
+  padding: 20px;
+  background-color: #333; /* Dark background color */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff; /* Text color */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    tr {
+      border-bottom: 1px solid #555; /* Darker border color */
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        padding: 10px;
+        text-align: left;
+        font-size: 16px;
+
+        &.label {
+          font-weight: bold;
+          color: #ddd; /* Lighter label text color */
+        }
+
+        &.value {
+          border-left: 2px solid #555; /* Darker border between label and value */
+          padding-left: 10px;
+
+          &:first-child {
+            border-left: none;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  p.loading-text {
+    color: #999;
+    font-style: italic;
+  }
+}
