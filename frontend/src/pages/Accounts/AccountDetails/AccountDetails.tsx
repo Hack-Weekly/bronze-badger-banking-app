@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 function AccountDetails() {
   const { accountID } = useParams();
   const [accountData, setAccountData] = useState(null);
+  const [depositAmount, setDepositAmount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +36,36 @@ function AccountDetails() {
     fetchData();
   }, [accountID]);
 
+  const handleDepositChange = (e) => {
+    e.preventDefault();
+    setDepositAmount(e.target.value);
+  };
+
+  const handleDeposit = async () => {
+    try {
+      // Make an API call to deposit funds
+      const userTokenResponse = await axios.get(
+        "http://localhost:3000/auth/get-token",
+        {
+          withCredentials: true,
+        }
+      );
+      const userToken = userTokenResponse.data.token;
+      const response = await axios.post(
+        `http://localhost:3000/transactions/deposit/${accountID}`,
+        { amount: depositAmount, _id: accountID },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.error("Error depositing funds:", error);
+    }
+  };
+
   return (
     <div className="account-details-container">
       <h1>Account Details for Account ID: {accountID}</h1>
@@ -62,6 +93,15 @@ function AccountDetails() {
       ) : (
         <p className="loading-text">Loading account details...</p>
       )}
+      <div className="deposit-section">
+        <input
+          type="number"
+          placeholder="Enter deposit amount"
+          value={depositAmount}
+          onChange={handleDepositChange}
+        />
+        <button onClick={handleDeposit}>Deposit</button>
+      </div>
     </div>
   );
 }

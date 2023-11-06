@@ -57,7 +57,6 @@ const getUserAccount = async (req, res, next) => {
     const userId = req.user._id;
     const accountID = req.params.accountID;
     const account = await Account.findOne({ _id: accountID, owner: userId });
-    console.log(account)
     res.json({ success: true, account });
   } catch (error) {
     console.error(error);

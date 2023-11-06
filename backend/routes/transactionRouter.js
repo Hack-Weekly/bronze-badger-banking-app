@@ -9,7 +9,7 @@ const {deposit} = require('../controllers/depositController');
 router.get('/transaction-history', isAuthenticated, getTransactionHistory);
 
 // Deposit route
-router.post('/deposit', isAuthenticated, deposit);
+router.post('/deposit/:accountID', isAuthenticated, deposit);
 
 
 module.exports = router;

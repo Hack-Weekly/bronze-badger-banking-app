@@ -5,14 +5,12 @@ const TransactionHistory = require('../models/transactionHistoryModel');
 
 const deposit = async (req, res, next) => {
   try {
-    const { accountName, amount } = req.body;
+    const {accountID} = req.params;
+    const amount = parseFloat(req.body.amount);
     const userId = req.user._id;
+    console.log(req.body.amount)
 
-    // Find all accounts associated with the user
-    const accounts = await Account.find({ owner: userId });
-
-    // Find the specific account by its accountName and accountType
-    const account = accounts.find(acc => acc.accountName === accountName && acc.accountType === 'savings');
+    const account = await Account.findOne({ owner: userId, _id: accountID });
 
     if (!account) {
       return res.status(404).json({ success: false, message: 'Savings account not found.' });
@@ -27,7 +25,6 @@ const deposit = async (req, res, next) => {
     });
 
     await newTransaction.save();
-    // Create a transaction history entry
     const transactionHistory = new TransactionHistory({
         fromAccount: account._id,
         toAccount: account._id,
