@@ -16,7 +16,6 @@ const payController = async (req, res, next) =>{
             return res.status(404).json({ success: false, message: 'Receiver not found.' });
           }
 
-
           const senderCheckingAccount = await Account.findOne({
             owner: sender,
             accountType: 'chequeing',
@@ -63,8 +62,6 @@ const payController = async (req, res, next) =>{
     res.status(500).json({ success: false, message: 'Payment error.' });
     }
 }
-
-
 
 
 module.exports = {payController};

@@ -91,13 +91,6 @@ const TransactionHistoryGrid: React.FC<TransactionHistoryGridProps> = ({ transac
                         {sortColumn === "type" && (sortDirection === "asc" ? <span>&#9650;</span> : <span>&#9660;</span>)}
                     </button>
                 </div>
-                <div className="transaction-grid-cell">
-                    <button className="transaction-grid-btn" type="button" onClick={() => handleSort("voided")}>
-                        Voided entry
-                        {sortColumn === "voided" && (
-                            sortDirection === "asc" ? <span>&#9650;</span> : <span>&#9660;</span>)}
-                    </button>
-                </div>
             </div>
             {sortedTransactions.map((transaction) => (
                 <div key={transaction.id} className="transaction-grid-row" style={{
@@ -105,13 +98,12 @@ const TransactionHistoryGrid: React.FC<TransactionHistoryGridProps> = ({ transac
                   // it's ugly for now for the sake of demonstration
                   backgroundColor : transaction.voided ? "red" : "green"
                 }}>
-                    <div className="transaction-grid-cell-data">{transaction.id}</div>
-                    <div className="transaction-grid-cell-data">{transaction.senderAccountId}</div>
-                    <div className="transaction-grid-cell-data">{transaction.receiverAccountId}</div>
+                    <div className="transaction-grid-cell-data">{transaction._id}</div>
+                    <div className="transaction-grid-cell-data">{transaction.sender}</div>
+                    <div className="transaction-grid-cell-data">{transaction.receiver}</div>
                     <div className="transaction-grid-cell-data">${transaction.amount}</div>
-                    <div className="transaction-grid-cell-data">{transaction.timestamp.toLocaleString()}</div>
+                    <div className="transaction-grid-cell-data">{transaction.date}</div>
                     <div className="transaction-grid-cell-data">{transaction.type}</div>
-                    <div className="transaction-grid-cell-data">{transaction.voided ? "Yes" : "No"}</div>
                 </div>
             ))}
         </div>

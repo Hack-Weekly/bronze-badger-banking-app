@@ -1,24 +1,17 @@
-const TransactionHistory = require('../models/transactionHistoryModel');
-const Account = require('../models/accountModel');
+const Transaction = require('../models/transactionModel');
 
 const getTransactionHistory = async (req, res, next) => {
     try {
         const userId = req.user._id;
 
-        // Find all accounts associated with the user
-        const accounts = await Account.find({ owner: userId });
-
-        // Extract account IDs
-        const accountIds = accounts.map(account => account._id);
-
-        // Find transactions where either fromAccount or toAccount is in accountIds
-        const transactions = await TransactionHistory.find({
+        const transactions = await Transaction.find({
             $or: [
-                { fromAccount: { $in: accountIds } },
-                { toAccount: { $in: accountIds } }
+                { sender:  userId  },
+                { receiver:  userId  }
             ]
-        }).populate('fromAccount').populate('toAccount').select('type');
-
+        })
+        .select('sender receiver type amount date');
+        
         res.json({ success: true, transactions });
     } catch (error) {
         console.error(error);

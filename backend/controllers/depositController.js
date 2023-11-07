@@ -8,7 +8,6 @@ const deposit = async (req, res, next) => {
     const {accountID} = req.params;
     const amount = parseFloat(req.body.amount);
     const userId = req.user._id;
-    console.log(req.body.amount)
 
     const account = await Account.findOne({ owner: userId, _id: accountID });
 
